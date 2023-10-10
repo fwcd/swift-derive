@@ -13,10 +13,6 @@ let package = Package(
             name: "Derive",
             targets: ["Derive"]
         ),
-        .executable(
-            name: "DeriveClient",
-            targets: ["DeriveClient"]
-        ),
     ],
     dependencies: [
         // Depend on the Swift 5.9 release of SwiftSyntax
@@ -36,9 +32,6 @@ let package = Package(
 
         // Library that exposes a macro as part of its API, which is used in client programs.
         .target(name: "Derive", dependencies: ["DeriveMacros"]),
-
-        // A client of the library, which is able to use the macro in its own code.
-        .executableTarget(name: "DeriveClient", dependencies: ["Derive"]),
 
         // A test target used to develop the macro implementation.
         .testTarget(
