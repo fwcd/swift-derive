@@ -12,17 +12,8 @@ public struct DeriveCustomStringConvertibleMacro: ExtensionMacro {
         conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [ExtensionDeclSyntax] {
-        for requiredConformance in ["RawRepresentable", "Equatable"] {
-            guard declaration.inheritanceClause?.inherits(requiredConformance) ?? false else {
-                context.diagnose(.init(
-                    node: declaration.inheritanceClause?.root ?? node.root,
-                    message: MustConformViaInheritanceClauseError(
-                        baseType: "\(type)",
-                        protocolType: requiredConformance
-                    )
-                ))
-                return []
-            }
+        guard declaration.requireConformances(to: ["RawRepresentable", "Equatable"], type: type, in: context) else {
+            return []
         }
         
         return [try ExtensionDeclSyntax("extension \(type.trimmed): CustomStringConvertible") {
