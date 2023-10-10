@@ -3,7 +3,7 @@ import Derive
 // TODO: Move to test
 
 @DeriveRawRepresentableDescription
-struct Weather: RawRepresentable {
+struct Weather: Equatable, RawRepresentable {
     let rawValue: Int
 
     static let sunny = Self(rawValue: 0)
