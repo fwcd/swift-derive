@@ -1,5 +1,7 @@
 # Swift Derive
 
+[![Build](https://github.com/fwcd/swift-derive/actions/workflows/build.yml/badge.svg)](https://github.com/fwcd/swift-derive/actions/workflows/build.yml)
+
 A set of useful conformance extension macros for Swift.
 
 ## Example
