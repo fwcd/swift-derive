@@ -12,7 +12,20 @@ public struct DeriveCustomStringConvertibleMacro: ExtensionMacro {
         conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [ExtensionDeclSyntax] {
-        [try ExtensionDeclSyntax("extension \(type.trimmed): CustomStringConvertible") {
+        for requiredConformance in ["RawRepresentable", "Equatable"] {
+            guard declaration.inheritanceClause?.inherits(requiredConformance) ?? false else {
+                context.diagnose(.init(
+                    node: declaration.inheritanceClause?.root ?? node.root,
+                    message: MustConformViaInheritanceClauseError(
+                        baseType: "\(type)",
+                        protocolType: requiredConformance
+                    )
+                ))
+                return []
+            }
+        }
+        
+        return [try ExtensionDeclSyntax("extension \(type.trimmed): CustomStringConvertible") {
             try VariableDeclSyntax("var description: String") {
                 try SwitchExprSyntax("switch self") {
                     let memberDecls = declaration.memberBlock.members
