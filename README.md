@@ -2,6 +2,40 @@
 
 A set of useful conformance macros for Swift.
 
+## Example
+
+```swift
+import Derive
+
+@DeriveRawRepresentableDescription
+struct Weather: Equatable, RawRepresentable {
+    let rawValue: Int
+
+    static let sunny = Self(rawValue: 0)
+    static let rainy = Self(rawValue: 1)
+    static let cloudy = Self(rawValue: 2)
+}
+```
+
+generates
+
+```swift
+extension Weather: CustomStringConvertible {
+    var description: String {
+        switch self {
+        case .sunny:
+            return "Weather.sunny"
+        case .rainy:
+            return "Weather.rainy"
+        case .cloudy:
+            return "Weather.cloudy"
+        default:
+            return "Weather(rawValue: \(rawValue))"
+        }
+    }
+}
+```
+
 ## Credits
 
 This library would not have been possible without:
