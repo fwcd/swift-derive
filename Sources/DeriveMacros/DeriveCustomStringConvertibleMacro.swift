@@ -3,8 +3,8 @@ import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
-/// Implementation of the `DeriveRawRepresentableDescription` macro.
-public struct DeriveRawRepresentableDescriptionMacro: ExtensionMacro {
+/// Implementation of the `DeriveCustomStringConvertible` macro.
+public struct DeriveCustomStringConvertibleMacro: ExtensionMacro {
     public static func expansion(
         of node: AttributeSyntax,
         attachedTo declaration: some DeclGroupSyntax,

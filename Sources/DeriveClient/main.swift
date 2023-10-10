@@ -2,7 +2,7 @@ import Derive
 
 // TODO: Move to test
 
-@DeriveRawRepresentableDescription
+@DeriveCustomStringConvertible
 struct Weather: Equatable, RawRepresentable {
     let rawValue: Int
 

@@ -9,7 +9,7 @@ A set of useful conformance extension macros for Swift.
 ```swift
 import Derive
 
-@DeriveRawRepresentableDescription
+@DeriveCustomStringConvertible
 struct Weather: Equatable, RawRepresentable {
     let rawValue: Int
 

@@ -7,7 +7,7 @@ import XCTest
 import DeriveMacros
 
 let testMacros: [String: Macro.Type] = [
-    "DeriveRawRepresentableDescription": DeriveRawRepresentableDescriptionMacro.self,
+    "DeriveCustomStringConvertible": DeriveCustomStringConvertibleMacro.self,
 ]
 #endif
 
@@ -26,7 +26,7 @@ final class DeriveTests: XCTestCase {
         
         assertMacroExpansion(
             """
-            @DeriveRawRepresentableDescription
+            @DeriveCustomStringConvertible
             \(structDecl)
             """,
             expandedSource: """
