@@ -16,8 +16,8 @@ public struct DeriveCustomStringConvertibleMacro: ExtensionMacro {
             return []
         }
         
-        return [try ExtensionDeclSyntax("\(declaration.modifiers.trimmed) extension \(type.trimmed): CustomStringConvertible") {
-            try VariableDeclSyntax("var description: String") {
+        return [try ExtensionDeclSyntax("extension \(type.trimmed): CustomStringConvertible") {
+            try VariableDeclSyntax("\(declaration.modifiers.trimmed) var description: String") {
                 try SwitchExprSyntax("switch self") {
                     let memberDecls = declaration.memberBlock.members
                         .compactMap { $0.decl.as(VariableDeclSyntax.self) }

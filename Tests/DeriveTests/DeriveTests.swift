@@ -24,6 +24,7 @@ final class DeriveTests: XCTestCase {
             }
             """
         
+        // TODO: Fix indentation of the generated description (caused by the modifiers)
         assertMacroExpansion(
             """
             @DeriveCustomStringConvertible
@@ -33,7 +34,7 @@ final class DeriveTests: XCTestCase {
             \(structDecl)
             
             extension Weather: CustomStringConvertible {
-                var description: String {
+             var description: String {
                     switch self {
                     case .sunny:
                         return "Weather.sunny"
