@@ -12,7 +12,7 @@ public struct DeriveCustomStringConvertibleMacro: ExtensionMacro {
         conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [ExtensionDeclSyntax] {
-        guard declaration.requireConformances(to: ["RawRepresentable", "Equatable"], type: type, in: context) else {
+        guard declaration.requireConformances(to: ["RawRepresentable"], type: type, in: context) else {
             return []
         }
         
